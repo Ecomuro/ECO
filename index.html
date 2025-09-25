@@ -1,116 +1,108 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <title>Ecomuro</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Fuente más legible -->
+  <!-- Fuente legible -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --verde1: #7A9F60;
-      --verde2: #688D56;
-      --cafe: #4a3c2a;
-      --blanco: #ffffff;
+    :root{
+      --verde:#6aa26a;
+      --verde-dark:#4e7b4e;
+      --marron:#4a3c2a;
+      --fondo:#fbfbfb;
+      --card:#ffffff;
     }
 
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: var(--blanco);
-      color: var(--cafe);
-      line-height: 1.6;
+    /* Reset básico */
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:'Poppins',sans-serif; background:var(--fondo); color:var(--marron);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
-    /* ====== HEADER ====== */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background: #f7f7f7;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    /* Header / Nav */
+    header{
+      position:sticky; top:0; z-index:1200;
+      background:rgba(255,255,255,0.95);
+      backdrop-filter: blur(6px);
+      box-shadow:0 2px 10px rgba(0,0,0,0.06);
+    }
+    .container{
+      max-width:1200px; margin:0 auto; padding:12px 20px; display:flex; align-items:center;
+      justify-content:space-between; gap:16px;
+    }
+    .logo-area{ display:flex; align-items:center; gap:12px; }
+    .logo-area img{ height:56px; width:auto; display:block; object-fit:contain; }
+
+    nav ul{ list-style:none; margin:0; padding:0; display:flex; gap:20px; align-items:center; }
+    nav a{
+      text-decoration:none; color:var(--marron); font-weight:600; padding:8px 10px; border-radius:8px;
+      transition: all .18s ease;
+    }
+    nav a:hover{ color:var(--verde-dark); background: rgba(110,170,110,0.06); }
+
+    /* Área principal: secciones alternadas */
+    main{ max-width:1200px; margin:30px auto; padding:0 20px 60px; }
+
+    .bloque{
+      margin:40px 0;
+      display:flex; flex-direction:column; align-items:center; gap:18px;
     }
 
-    .logo img {
-      height: 50px;
+    .bloque .img-wrap{
+      width:100%; max-height:560px; overflow:hidden; border-radius:12px;
+      box-shadow:0 18px 40px rgba(20,30,10,0.06);
+    }
+    .bloque img.seccion-img{
+      width:100%; height:420px; object-fit:cover; display:block;
     }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-      margin: 0;
-      padding: 0;
+    .bloque .texto{
+      width:100%; max-width:980px; background:var(--card); padding:22px; border-radius:10px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.04);
+    }
+    .bloque h2{ margin:0 0 8px; color:var(--verde-dark); font-size:1.6rem; }
+    .bloque p{ margin:0; font-size:1rem; color:var(--marron); line-height:1.6; }
+
+    /* Listas y pasos */
+    .proceso-steps{ list-style:none; margin:8px 0 0; padding:0; display:grid; gap:10px; }
+    .proceso-steps li{
+      background: #fbfbfb; border-left:4px solid var(--verde); padding:10px 12px; border-radius:6px;
+      font-weight:500;
     }
 
-    nav a {
-      text-decoration: none;
-      font-weight: 600;
-      color: var(--cafe);
-      transition: color 0.3s;
+    /* Beneficios (seccion 3) */
+    .beneficios{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:12px; }
+    .beneficio{ background:#f7fff7; padding:14px; border-radius:8px; border:1px solid rgba(110,170,110,0.06); }
+
+    /* Formulario (Seccion 5) */
+    .contacto{ display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; }
+    .contacto form{ background:var(--card); padding:18px; border-radius:10px; box-shadow:0 8px 20px rgba(0,0,0,0.04); }
+    label{ display:block; font-weight:600; margin:8px 0 6px; font-size:.95rem; color:var(--marron); }
+    input[type="text"], input[type="email"], textarea{
+      width:100%; padding:10px 12px; border:1px solid #e1e1e1; border-radius:8px; font-size:0.98rem;
+    }
+    textarea{ resize:vertical; min-height:120px; }
+    .btn{
+      display:inline-block; margin-top:12px; background:var(--verde); color:#fff; padding:10px 16px;
+      border-radius:8px; text-decoration:none; border:none; cursor:pointer; font-weight:700;
     }
 
-    nav a:hover {
-      color: var(--verde2);
-    }
+    /* Footer */
+    footer{ margin-top:40px; padding:28px 20px; background:linear-gradient(180deg, #fff 0%, #fbfbfb 100%); }
+    .footer-inner{ max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; gap:20px; align-items:center; padding:6px 0; }
+    .contacto-footer p{ margin:0; color:#555; font-size:0.95rem; }
+    .socials a{ display:inline-block; margin-left:8px; }
 
-    /* ====== SECCIONES ====== */
-    section {
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .seccion-img {
-      width: 100%;
-      height: 450px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    .seccion-texto {
-      max-width: 900px;
-      margin: 0 auto 50px;
-    }
-
-    .seccion-texto h2 {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-      color: var(--verde2);
-    }
-
-    .seccion-texto p {
-      font-size: 1.1rem;
-    }
-
-    /* ====== INSTAGRAM ====== */
-    .instagram {
-      text-align: center;
-      margin: 60px 0;
-    }
-
-    .instagram a img {
-      width: 50px;
-      transition: transform 0.3s;
-    }
-
-    .instagram a img:hover {
-      transform: scale(1.2);
-    }
-
-    /* ====== FOOTER ====== */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #f0f0f0;
-      font-size: 0.9rem;
-      color: #555;
+    /* Responsive */
+    @media (max-width:900px){
+      .beneficios{ grid-template-columns:1fr; }
+      .contacto{ grid-template-columns:1fr; }
+      .bloque img.seccion-img{ height:320px; }
+      .logo-area img{ height:48px; }
     }
   </style>
 </head>
@@ -118,71 +110,179 @@
 
   <!-- HEADER -->
   <header>
-    <div class="logo">
-      <img src="logo.png" alt="Logo de Ecomuro">
+    <div class="container">
+      <div class="logo-area">
+        <!-- Reemplaza logo.png por tu logo -->
+        <img src="logo.png" alt="Logo Ecomuro">
+      </div>
+
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="#sec1">Inicio</a></li>
+          <li><a href="#sec2">Nuestro Proceso</a></li>
+          <li><a href="#sec3">Beneficios</a></li>
+          <li><a href="#sec4">Compromiso</a></li>
+          <li><a href="#sec5">Contacto</a></li>
+        </ul>
+      </nav>
     </div>
-    <nav>
-      <ul>
-        <li><a href="#nosotros">Nosotros</a></li>
-        <li><a href="#productos">Nuestros productos</a></li>
-      </ul>
-    </nav>
   </header>
 
-  <!-- SECCIÓN 1 -->
-  <section>
-    <img src="imagen1.jpg" alt="Imagen sección 1" class="seccion-img">
-    <div class="seccion-texto" id="nosotros">
-      <h2>Título sección 1</h2>
-      <p>
-        Texto descriptivo de la primera sección. Aquí puedes hablar de tu empresa, misión y visión.
-      </p>
-    </div>
-  </section>
+  <main>
 
-  <!-- SECCIÓN 2 -->
-  <section>
-    <img src="imagen2.jpg" alt="Imagen sección 2" class="seccion-img">
-    <div class="seccion-texto">
-      <h2>Título sección 2</h2>
-      <p>
-        Texto explicativo de lo que ofreces, los beneficios de los muros ecológicos y cómo ayudan al ambiente.
-      </p>
-    </div>
-  </section>
+    <!-- SECCIÓN 1 -->
+    <section id="sec1" class="bloque">
+      <div class="img-wrap">
+        <!-- imagen1.jpg la pones tú -->
+        <img class="seccion-img" src="imagen1.jpg" alt="Muros verdes Ecomuro - imagen 1">
+      </div>
 
-  <!-- SECCIÓN 3 -->
-  <section>
-    <img src="imagen3.jpg" alt="Imagen sección 3" class="seccion-img">
-    <div class="seccion-texto" id="productos">
-      <h2>Título sección 3</h2>
-      <p>
-        Aquí puedes mostrar algunos productos destacados o explicar sus características principales.
-      </p>
-    </div>
-  </section>
+      <div class="texto">
+        <h2>Tu Espacio, Más Vivo</h2>
+        <p>
+          Especialistas en el diseño y la instalación de muros verdes con sistemas de riego automatizado para
+          un mantenimiento sin preocupaciones. Transformamos paredes en pulmones verdes que aportan estética,
+          frescura y bienestar a hogares y espacios de trabajo.
+        </p>
+      </div>
+    </section>
 
-  <!-- SECCIÓN 4 -->
-  <section>
-    <img src="imagen4.jpg" alt="Imagen sección 4" class="seccion-img">
-    <div class="seccion-texto">
-      <h2>Título sección 4</h2>
-      <p>
-        Último bloque de texto para reforzar el mensaje final de tu página.
-      </p>
-    </div>
-  </section>
+    <!-- SECCIÓN 2: Nuestro Proceso -->
+    <section id="sec2" class="bloque">
+      <div class="img-wrap">
+        <img class="seccion-img" src="imagen2.jpg" alt="Proceso de trabajo Ecomuro">
+      </div>
 
-  <!-- INSTAGRAM -->
-  <div class="instagram">
-    <a href="https://www.instagram.com/ecom.uro" target="_blank" rel="noopener">
-      <img src="instagram.png" alt="Instagram">
-    </a>
-  </div>
+      <div class="texto">
+        <h2>Nuestro Proceso</h2>
+        <p>Así trabajamos para entregarte un muro verde eficiente y duradero:</p>
+        <ul class="proceso-steps">
+          <li><strong>Diseñamos</strong> — Cada diseño optimiza el crecimiento de las plantas y la eficiencia del riego. Seleccionamos la configuración de muro que mejor se adapte a tu espacio.</li>
+          <li><strong>Instalamos</strong> — Nuestro equipo instala profesionalmente el muro y el sistema de riego automático, asegurando un funcionamiento sin fallos.</li>
+          <li><strong>Suministramos</strong> — Entregamos un kit completo: estructura, sistema de riego y plantas seleccionadas para que tu muro esté vivo desde el primer día.</li>
+          <li><strong>Mantenemos</strong> — Aunque el riego es automatizado, ofrecemos planes de mantenimiento para conservar la salud y belleza de tus plantas.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: Beneficios -->
+    <section id="sec3" class="bloque">
+      <div class="img-wrap">
+        <img class="seccion-img" src="imagen3.jpg" alt="Beneficios de muros verdes">
+      </div>
+
+      <div class="texto">
+        <h2>Beneficios de un Muro Verde</h2>
+        <p>Elegir un muro verde de Ecomuro significa apostar por salud, ahorro y estética. Entre las ventajas principales están:</p>
+
+        <div class="beneficios" aria-hidden="false">
+          <div class="beneficio"><strong>Mejora la calidad del aire</strong><div>Las plantas filtran partículas y aportan oxígeno.</div></div>
+          <div class="beneficio"><strong>Regula temperatura y reduce ruido</strong><div>Actúa como aislante térmico y acústico para ambientes más confortables.</div></div>
+          <div class="beneficio"><strong>Ahorro de agua</strong><div>Nuestro sistema de riego automatizado optimiza el consumo y evita desperdicios.</div></div>
+          <div class="beneficio"><strong>Estética y bienestar</strong><div>Crea espacios más acogedores que mejoran el ánimo y productividad.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: Compromiso con el Medio Ambiente -->
+    <section id="sec4" class="bloque">
+      <div class="img-wrap">
+        <img class="seccion-img" src="imagen4.jpg" alt="Compromiso ambiental Ecomuro">
+      </div>
+
+      <div class="texto">
+        <h2>Compromiso con el Medio Ambiente</h2>
+        <p>
+          En <strong>Ecomuro</strong> creemos que cada muro verde es mucho más que una instalación decorativa: es una contribución real al planeta.
+          Nuestros sistemas de riego automatizado garantizan el bienestar de las plantas y promueven un uso eficiente del agua. Apostamos por materiales
+          duraderos y sostenibles para reducir el impacto ambiental en cada proyecto.
+        </p>
+
+        <p>
+          Con cada muro que instalamos, ayudamos a:
+        </p>
+        <ul class="proceso-steps" style="margin-top:8px;">
+          <li>Mejorar la calidad del aire.</li>
+          <li>Regular la temperatura de los espacios.</li>
+          <li>Crear entornos más saludables y armónicos.</li>
+          <li>Promover la biodiversidad en entornos urbanos.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: Contacto -->
+    <section id="sec5" class="bloque">
+      <div class="img-wrap">
+        <img class="seccion-img" src="imagen5.jpg" alt="Contacto Ecomuro">
+      </div>
+
+      <div class="texto">
+        <h2>Hablemos</h2>
+        <p>Nos encantaría acompañarte en el proceso de tu proyecto verde. Completa el formulario o contáctanos por nuestras redes.</p>
+
+        <div class="contacto" style="margin-top:16px;">
+          <!-- Formulario: abre el cliente de correo del usuario -->
+          <form action="mailto:ecomuro.info.com" method="post" enctype="text/plain" onsubmit="">
+            <label for="nombre">Nombre *</label>
+            <input id="nombre" name="Nombre" type="text" required placeholder="Tu nombre">
+
+            <label for="email">Correo electrónico *</label>
+            <input id="email" name="Correo" type="email" required placeholder="tucorreo@ejemplo.com">
+
+            <label for="mensaje">Mensaje *</label>
+            <textarea id="mensaje" name="Mensaje" required placeholder="Escribe aquí tu mensaje..."></textarea>
+
+            <button class="btn" type="submit">Enviar mensaje</button>
+          </form>
+
+          <!-- Datos de contacto / redes -->
+          <div>
+            <h3 style="margin-top:0;color:var(--verde-dark)">Datos de la empresa</h3>
+            <p style="margin:.2rem 0"><strong>Correo:</strong> ecomuro.info.com</p>
+            <p style="margin:.2rem 0"><strong>Teléfono:</strong> +57 300 000 0000</p>
+            <p style="margin:.2rem 0"><strong>Dirección:</strong> Bogotá, Colombia</p>
+
+            <div style="margin-top:12px;">
+              <strong>Síguenos</strong>
+              <!-- Enlace al instagram (reemplaza si es otro) -->
+              <div style="margin-top:8px;">
+                <a href="https://www.instagram.com/ecom.uro" target="_blank" rel="noopener" aria-label="Instagram Ecomuro" style="display:inline-block;">
+                  <!-- Ícono SVG de Instagram (inline, sin imagen externa) -->
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
+                    <rect x="2" y="2" width="20" height="20" rx="5" fill="#fff"/>
+                    <path d="M7.5 2H16.5C19 2 21 4 21 6.5V17.5C21 20 19 22 16.5 22H7.5C5 22 3 20 3 17.5V6.5C3 4 5 2 7.5 2Z" stroke="#333" stroke-width="0.6"/>
+                    <path d="M12 8.2A3.8 3.8 0 1 0 12 15.8 3.8 3.8 0 1 0 12 8.2Z" stroke="#333" stroke-width="0.6"/>
+                    <circle cx="17.5" cy="6.5" r="0.9" fill="#333"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
-    © 2025 Ecomuro - Todos los derechos reservados
+    <div class="footer-inner">
+      <div class="contacto-footer">
+        <p>© <strong>Ecomuro</strong> — Bogotá, Colombia</p>
+      </div>
+
+      <div class="socials">
+        <a href="https://www.instagram.com/ecom.uro" target="_blank" rel="noopener" aria-label="Instagram Ecomuro">
+          <!-- pequeño svg -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;">
+            <path d="M7.5 2H16.5C19 2 21 4 21 6.5V17.5C21 20 19 22 16.5 22H7.5C5 22 3 20 3 17.5V6.5C3 4 5 2 7.5 2Z" stroke="#333" stroke-width="0.6" fill="#fff"/>
+            <path d="M12 8.2A3.8 3.8 0 1 0 12 15.8 3.8 3.8 0 1 0 12 8.2Z" stroke="#333" stroke-width="0.6"/>
+            <circle cx="17.5" cy="6.5" r="0.9" fill="#333"/>
+          </svg>
+        </a>
+      </div>
+    </div>
   </footer>
 
 </body>
